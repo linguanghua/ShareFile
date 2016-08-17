@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.junxu.sharefile"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.junxu.sharefile.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.junxu.sharefile.FileSelectActivity"
+            android:label=".FileSelect">
+            <intent-filter >
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE"/>
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+        </activity>
+        
+        <provider
+	        android:name="android.support.v4.content.FileProvider"
+	        android:authorities="com.junxu.sharefile.fileprovider"
+			android:grantUriPermissions="true"
+			android:exported="false">
+	      <meta-data 
+	            android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/filepaths"/> 
+	        
+	   </provider>
+    </application>
+     
+</manifest>
